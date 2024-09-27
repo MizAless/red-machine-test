@@ -13,7 +13,8 @@ namespace Levels
 
         private void Start()
         {
-            ScenesChanger.GotoScene(string.Format(LevelNamePattern, _currentLevelIndex));
+            //ScenesChanger.GotoScene(string.Format(LevelNamePattern, _currentLevelIndex));
+            ScenesChanger.GotoScene("Test");
 
             EventsController.Subscribe<EventModels.Game.TargetColorNodesFilled>(this, OnTargetColorNodesFilled);
         }

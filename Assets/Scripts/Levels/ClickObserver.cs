@@ -1,7 +1,7 @@
-using System;
 using Connection;
 using Events;
 using Player.ActionHandlers;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace Levels
@@ -25,11 +25,11 @@ namespace Levels
             _clickHandler.PointerDownEvent -= OnPointerDown;
             _clickHandler.PointerUpEvent -= OnPointerUp;
         }
-        
+
         private void OnPointerDown(Vector3 position)
         {
             colorConnectionManager.TryGetColorNodeInPosition(position, out var node);
-            
+
             if (node != null)
                 EventsController.Fire(new EventModels.Game.NodeTapped());
         }

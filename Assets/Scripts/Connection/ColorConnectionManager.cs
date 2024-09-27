@@ -38,12 +38,18 @@ namespace Connection
             }
 
             _clickHandler = ClickHandler.Instance;
-            _clickHandler.SetDragEventHandlers(OnDragStart, OnDragEnd);
+            //_clickHandler.SetDragEventHandlers(OnNodeDragStart, OnNodeDragEnd);
+
+            _clickHandler.DragStartEvent += OnNodeDragStart;
+            _clickHandler.DragEndEvent += OnNodeDragEnd;
         }
 
         private void OnDestroy()
         {
-            _clickHandler.ClearEvents();
+            //_clickHandler.ClearEvents();
+
+            _clickHandler.DragStartEvent -= OnNodeDragStart;
+            _clickHandler.DragEndEvent -= OnNodeDragEnd;
         }
 
         private void StartConnecting(ColorNode colorNode)
@@ -113,7 +119,7 @@ namespace Connection
             _connectionsFromColorNode[mainColorNode].Remove(targetColorNode);
         }
 
-        private void OnDragStart(Vector3 startPosition)
+        private void OnNodeDragStart(Vector3 startPosition)
         {
             if (PlayerController.PlayerState != PlayerState.Connecting)
                 return;
@@ -122,7 +128,7 @@ namespace Connection
                 StartConnecting(colorNode);
         }
 
-        private void OnDragEnd(Vector3 finishPosition)
+        private void OnNodeDragEnd(Vector3 finishPosition)
         {
             if (PlayerController.PlayerState != PlayerState.Connecting)
                 return;

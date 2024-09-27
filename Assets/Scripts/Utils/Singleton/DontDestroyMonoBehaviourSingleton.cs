@@ -1,3 +1,4 @@
+using Player.ActionHandlers;
 using UnityEngine;
 
 namespace Utils.Singleton

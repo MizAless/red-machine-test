@@ -31,15 +31,16 @@ namespace Player.ActionHandlers
                 _clickHoldDuration = .0f;
 
                 _pointerDownPosition = CameraHolder.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-                
+
                 PointerDownEvent?.Invoke(_pointerDownPosition);
-                
+
                 _pointerDownPosition = new Vector3(_pointerDownPosition.x, _pointerDownPosition.y, .0f);
+
             }
             else if (Input.GetMouseButtonUp(0))
             {
                 var pointerUpPosition = CameraHolder.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-                    
+
                 if (_isDrag)
                 {
                     DragEndEvent?.Invoke(pointerUpPosition);
@@ -50,7 +51,7 @@ namespace Player.ActionHandlers
                 {
                     ClickEvent?.Invoke(pointerUpPosition);
                 }
-                
+
                 PointerUpEvent?.Invoke(pointerUpPosition);
 
                 _isClick = false;
@@ -72,18 +73,18 @@ namespace Player.ActionHandlers
             }
         }
 
-        public void SetDragEventHandlers(Action<Vector3> dragStartEvent, Action<Vector3> dragEndEvent)
-        {
-            ClearEvents();
+        //public void SetDragEventHandlers(Action<Vector3> dragStartEvent, Action<Vector3> dragEndEvent)
+        //{
+        //    ClearEvents();
 
-            DragStartEvent = dragStartEvent;
-            DragEndEvent = dragEndEvent;
-        }
+        //    DragStartEvent = dragStartEvent;
+        //    DragEndEvent = dragEndEvent;
+        //}
 
-        public void ClearEvents()
-        {
-            DragStartEvent = null;
-            DragEndEvent = null;
-        }
+        //public void ClearEvents()
+        //{
+        //    DragStartEvent = null;
+        //    DragEndEvent = null;
+        //}
     }
 }
